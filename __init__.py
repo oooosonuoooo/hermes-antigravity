@@ -19,12 +19,12 @@ try:
     from .accounts import AntigravityAccountRegistry
     from .auth import AntigravityAuthManager, register_hermes_auth
     from .client import AntigravityClient
-    from .models import FALLBACK_MODELS, fetch_available_models
+    from .models import fetch_available_models
 except ImportError:
     from accounts import AntigravityAccountRegistry
     from auth import AntigravityAuthManager, register_hermes_auth
     from client import AntigravityClient
-    from models import FALLBACK_MODELS, fetch_available_models
+    from models import fetch_available_models
 
 logger = logging.getLogger(__name__)
 
@@ -119,10 +119,11 @@ except Exception as exc:
 
 def _model_flow_antigravity(config=None, current_model="", args=None):
     """Native model selection & OAuth flow for Google Antigravity in `hermes model`."""
-    from .auth import AntigravityAuthManager
-    from .models import FALLBACK_MODELS, fetch_available_models
     from hermes_cli.auth import _prompt_model_selection
     from hermes_cli.model_setup_flows_common import _activate_provider_model
+
+    from .auth import AntigravityAuthManager
+    from .models import fetch_available_models
 
     registry = AntigravityAccountRegistry()
 
